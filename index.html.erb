@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="table" ng-controller="tableCtrl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>table</title>
+
+    <link href="styles/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <script type="text/ng-template" id="table.html">
+
+        <!-- <button>data1</button>
+        <button>data2</button>
+        <button>data3</button> -->
+
+        <div class="searchbar" ng-show="isSearchBarShow">
+            <input type="text" ng-model="keyword">
+            <button ng-click="searchData()">search</button>
+        </div>
+
+        <table ng-init="init()"> 
+          <tr>
+            <th>first name</th>
+            <th>last name</th>
+            <th>birth date</th>
+            <th>balance</th>
+            <th>email</th>
+         </tr> 
+         <tr ng-repeat="row in data track by $index">
+            <td>{{row.firstName}}</td>
+            <td>{{row.lastName}}</td>
+            <td>{{row.birthDate}}</td>
+            <td>{{row.balance}}</td>
+            <td>{{row.email}}</td>
+         </tr> 
+        </table>
+
+        <div class="pagetool" ng-show="isPageToolShow">
+            <button ng-click="goToFirstPage()"><<</button>
+            <button ng-click="goToPrePage()"><</button>
+            <input type="text"> of <span>{{pageTool.totalPage}}</span>
+            <button ng-click="goToNextPage()">></button>
+            <button ng-click="goToLastPage()">>></button>
+        </div>
+        
+    </script>
+
+    
+
+    <div table-component table-config='{"getDataUrl":"data/mockTableData.json","pagetool":true,"searchbar":true}' ng-include="'table.html'"></div>
+
+    <script src="js/angular.min.js"></script>
+    <script src="controller/TableComponentController.js"></script>
+    <script src="directives/tableComponent.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
